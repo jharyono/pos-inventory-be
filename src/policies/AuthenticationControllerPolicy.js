@@ -11,7 +11,7 @@ module.exports = {
 
     if (error) {
       switch (error.details[0].context.key) {
-        case "email":
+        case "name":
           res.status(400).send({
             error: "You must provide a valid email address",
           });

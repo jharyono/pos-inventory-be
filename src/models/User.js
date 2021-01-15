@@ -17,10 +17,11 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      email: {
+      name: {
         type: DataTypes.STRING,
         unique: true,
       },
+      group: DataTypes.STRING,
       password: DataTypes.STRING,
     },
     {
