@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-  const UserGroup = sequelize.define('UserGroup', {
-    gp_name: {
+  const DrugType = sequelize.define('DrugType', {
+    ty_name: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
     },
   });
-  return UserGroup;
+  return DrugType;
 };

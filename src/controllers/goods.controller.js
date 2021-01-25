@@ -1,5 +1,5 @@
-const { Goods } = require("../models");
-const { Op } = require("sequelize");
+const { Goods } = require('../models');
+const { Op } = require('sequelize');
 
 module.exports = {
   async get(req, res) {
@@ -10,7 +10,18 @@ module.exports = {
       res.send(goods);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to fetch the user groups",
+        error: 'An error has occured trying to fetch the goods',
+      });
+    }
+  },
+
+  async getOne(req, res) {
+    try {
+      const goods = await Goods.findByPk(req.params.goodsId);
+      res.send(goods);
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to fetch an item',
       });
     }
   },
@@ -25,7 +36,7 @@ module.exports = {
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to update goods data",
+        error: 'An error has occured trying to update goods data',
       });
     }
   },
@@ -36,7 +47,7 @@ module.exports = {
       res.send(goods);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to create a goods",
+        error: 'An error has occured trying to create a goods',
       });
     }
   },
@@ -46,14 +57,14 @@ module.exports = {
       const goods = await Goods.findByPk(req.params.goodsId);
       if (!goods) {
         res.status(500).send({
-          error: "An error has occured trying to delete a goods",
+          error: 'An error has occured trying to delete a goods',
         });
       }
       goods.destroy();
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to delete a goods",
+        error: 'An error has occured trying to delete a goods',
       });
     }
   },

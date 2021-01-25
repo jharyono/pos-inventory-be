@@ -1,5 +1,5 @@
-const { Customer } = require("../models");
-const { Op } = require("sequelize");
+const { Customer } = require('../models');
+const { Op } = require('sequelize');
 
 module.exports = {
   async get(req, res) {
@@ -10,7 +10,18 @@ module.exports = {
       res.send(customer);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to fetch customer",
+        error: 'An error has occured trying to fetch customers',
+      });
+    }
+  },
+
+  async getOne(req, res) {
+    try {
+      const customer = await Customer.findByPk(req.params.customerId);
+      res.send(customer);
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to fetch a customer',
       });
     }
   },
@@ -25,7 +36,7 @@ module.exports = {
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to update customer data",
+        error: 'An error has occured trying to update customer data',
       });
     }
   },
@@ -36,7 +47,7 @@ module.exports = {
       res.send(customer);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to create a customer",
+        error: 'An error has occured trying to create a customer',
       });
     }
   },
@@ -46,14 +57,14 @@ module.exports = {
       const customer = await Customer.findByPk(req.params.customerId);
       if (!customer) {
         res.status(500).send({
-          error: "An error has occured trying to delete a customer",
+          error: 'An error has occured trying to delete a customer',
         });
       }
       customer.destroy();
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to delete a customer",
+        error: 'An error has occured trying to delete a customer',
       });
     }
   },

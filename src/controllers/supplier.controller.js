@@ -1,5 +1,5 @@
-const { Supplier } = require("../models");
-const { Op } = require("sequelize");
+const { Supplier } = require('../models');
+const { Op } = require('sequelize');
 
 module.exports = {
   async get(req, res) {
@@ -10,7 +10,18 @@ module.exports = {
       res.send(supplier);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to fetch supplier",
+        error: 'An error has occured trying to fetch supplier',
+      });
+    }
+  },
+
+  async getOne(req, res) {
+    try {
+      const supplier = await Supplier.findByPk(req.params.supplierId);
+      res.send(supplier);
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to fetch a supplier',
       });
     }
   },
@@ -25,7 +36,7 @@ module.exports = {
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to update supplier data",
+        error: 'An error has occured trying to update supplier data',
       });
     }
   },
@@ -36,7 +47,7 @@ module.exports = {
       res.send(supplier);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to create a supplier",
+        error: 'An error has occured trying to create a supplier',
       });
     }
   },
@@ -46,14 +57,14 @@ module.exports = {
       const supplier = await Supplier.findByPk(req.params.supplierId);
       if (!supplier) {
         res.status(500).send({
-          error: "An error has occured trying to delete a supplier",
+          error: 'An error has occured trying to delete a supplier',
         });
       }
       supplier.destroy();
       res.send(req.body);
     } catch (err) {
       res.status(500).send({
-        error: "An error has occured trying to delete a supplier",
+        error: 'An error has occured trying to delete a supplier',
       });
     }
   },

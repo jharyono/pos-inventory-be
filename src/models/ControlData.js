@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    cd_description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
   return ControlData;
 };
